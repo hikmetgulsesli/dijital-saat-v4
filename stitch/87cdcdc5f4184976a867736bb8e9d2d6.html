@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#3cddc7",
+                    "surface-container-high": "#23293c",
+                    "on-surface-variant": "#c6c6cd",
+                    "on-tertiary-container": "#009182",
+                    "secondary-container": "#39485a",
+                    "on-error": "#690005",
+                    "surface-dim": "#0c1324",
+                    "secondary": "#b9c8de",
+                    "surface-container": "#191f31",
+                    "primary-fixed-dim": "#c6c6c7",
+                    "outline-variant": "#45464d",
+                    "on-tertiary-fixed": "#00201c",
+                    "on-secondary": "#233143",
+                    "error-container": "#93000a",
+                    "surface": "#0c1324",
+                    "surface-container-highest": "#2e3447",
+                    "secondary-fixed-dim": "#b9c8de",
+                    "tertiary-fixed": "#62fae3",
+                    "background": "#0c1324",
+                    "tertiary-fixed-dim": "#3cddc7",
+                    "on-primary-fixed-variant": "#454747",
+                    "on-primary-fixed": "#1a1c1c",
+                    "surface-container-lowest": "#070d1f",
+                    "on-tertiary": "#003731",
+                    "surface-variant": "#2e3447",
+                    "outline": "#909097",
+                    "tertiary-container": "#001c18",
+                    "on-secondary-container": "#a7b6cc",
+                    "primary-fixed": "#e2e2e2",
+                    "surface-bright": "#33394c",
+                    "on-tertiary-fixed-variant": "#005047",
+                    "on-primary-container": "#808181",
+                    "inverse-on-surface": "#2a3043",
+                    "on-error-container": "#ffdad6",
+                    "secondary-fixed": "#d4e4fa",
+                    "primary-container": "#161818",
+                    "on-secondary-fixed": "#0d1c2d",
+                    "primary": "#c6c6c7",
+                    "inverse-primary": "#5d5f5f",
+                    "on-primary": "#2f3131",
+                    "surface-tint": "#c6c6c7",
+                    "surface-container-low": "#151b2d",
+                    "on-surface": "#dce1fb",
+                    "error": "#ffb4ab",
+                    "on-secondary-fixed-variant": "#39485a",
+                    "inverse-surface": "#dce1fb",
+                    "on-background": "#dce1fb"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #0c1324;
+            color: #dce1fb;
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+        }
+        .analog-clock-shadow {
+            box-shadow: 0 0 60px 0 rgba(60, 221, 199, 0.05);
+        }
+        .dial-line {
+            transform-origin: 50% 50%;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+<!-- TopAppBar -->
+<header class="bg-[#0c1324] text-[#dce1fb] font-['Inter'] font-medium tracking-tight flex justify-between items-center w-full px-6 py-4 max-w-full z-50">
+<div class="text-xl font-bold tracking-[-0.02em] text-[#dce1fb] uppercase">CHRONOS</div>
+<nav class="hidden md:flex gap-8 items-center">
+<a class="text-[#a7b6cc] hover:text-[#dce1fb] transition-colors" href="#">DİJİTAL</a>
+<a class="text-[#3cddc7] font-bold border-b-2 border-[#3cddc7] pb-1" href="#">ANALOG</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="text-[#a7b6cc] hover:text-[#3cddc7] transition-all duration-300 active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+</div>
+</header>
+<!-- Main Canvas: The Temporal Monolith -->
+<main class="flex-grow flex flex-col items-center justify-center relative px-6">
+<!-- Subtle Radial Background Glow -->
+<div class="absolute inset-0 flex items-center justify-center -z-10 overflow-hidden pointer-events-none">
+<div class="w-[800px] h-[800px] bg-tertiary/5 rounded-full blur-[120px]"></div>
+</div>
+<!-- Analog Clock Container -->
+<div class="relative w-full max-w-[400px] aspect-square flex items-center justify-center">
+<!-- Glass Overlay/Shadow Effect -->
+<div class="absolute inset-0 rounded-full bg-surface-container-low/30 backdrop-blur-sm analog-clock-shadow"></div>
+<svg class="w-full h-full p-4 relative z-10" fill="none" viewbox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+<!-- Clock Face -->
+<circle class="text-outline-variant/20" cx="200" cy="200" r="180" stroke="currentColor" stroke-width="0.5"></circle>
+<!-- Hour Markers -->
+<g class="text-on-surface-variant/40">
+<line stroke="currentColor" stroke-linecap="round" stroke-width="2" x1="200" x2="200" y1="35" y2="55"></line>
+<line stroke="currentColor" stroke-linecap="round" stroke-width="2" x1="365" x2="345" y1="200" y2="200"></line>
+<line stroke="currentColor" stroke-linecap="round" stroke-width="2" x1="200" x2="200" y1="365" y2="345"></line>
+<line stroke="currentColor" stroke-linecap="round" stroke-width="2" x1="35" x2="55" y1="200" y2="200"></line>
+</g>
+<!-- Minute Markers (Subtle Dots) -->
+<g class="text-outline-variant/10">
+<circle cx="200" cy="30" fill="currentColor" r="1.5" transform="rotate(30 200 200)"></circle>
+<circle cx="200" cy="30" fill="currentColor" r="1.5" transform="rotate(60 200 200)"></circle>
+<circle cx="200" cy="30" fill="currentColor" r="1.5" transform="rotate(120 200 200)"></circle>
+<circle cx="200" cy="30" fill="currentColor" r="1.5" transform="rotate(150 200 200)"></circle>
+<circle cx="200" cy="30" fill="currentColor" r="1.5" transform="rotate(210 200 200)"></circle>
+<circle cx="200" cy="30" fill="currentColor" r="1.5" transform="rotate(240 200 200)"></circle>
+<circle cx="200" cy="30" fill="currentColor" r="1.5" transform="rotate(300 200 200)"></circle>
+<circle cx="200" cy="30" fill="currentColor" r="1.5" transform="rotate(330 200 200)"></circle>
+</g>
+<!-- Hour Hand (Modern & Minimal) -->
+<line stroke="#dce1fb" stroke-linecap="round" stroke-width="5" transform="rotate(230 200 200)" x1="200" x2="200" y1="200" y2="120"></line>
+<!-- Minute Hand (Longer & Thinner) -->
+<line stroke="#dce1fb" stroke-linecap="round" stroke-width="3" transform="rotate(10 200 200)" x1="200" x2="200" y1="200" y2="70"></line>
+<!-- Second Hand (The Pulse Color) -->
+<g transform="rotate(165 200 200)">
+<line stroke="#3cddc7" stroke-linecap="round" stroke-width="1.5" x1="200" x2="200" y1="230" y2="55"></line>
+<circle cx="200" cy="200" fill="#3cddc7" r="4"></circle>
+<circle cx="200" cy="200" fill="#0c1324" r="1.5"></circle>
+</g>
+</svg>
+</div>
+<!-- Date Display: Turkish Editorial Style -->
+<div class="mt-16 text-center space-y-1">
+<h1 class="text-[1.75rem] font-medium tracking-tight text-on-surface leading-tight uppercase">
+                12 HAZİRAN PAZARTESİ
+            </h1>
+<div class="flex items-center justify-center gap-3">
+<span class="text-[0.6875rem] font-bold uppercase tracking-[0.2em] text-tertiary">İSTANBUL</span>
+<span class="w-1 h-1 rounded-full bg-on-surface-variant/30"></span>
+<span class="text-[0.6875rem] font-bold uppercase tracking-[0.2em] text-on-secondary-container">GMT +3</span>
+</div>
+</div>
+<!-- Active Info Section (Bento Inspired) -->
+<div class="mt-12 grid grid-cols-2 md:grid-cols-3 gap-4 max-w-xl w-full">
+<div class="bg-surface-container-low p-4 rounded-xl flex flex-col items-center justify-center text-center">
+<span class="text-[0.6875rem] font-bold uppercase tracking-widest text-on-secondary-container mb-1">ALARM</span>
+<span class="text-sm font-medium text-on-surface">07:30</span>
+</div>
+<div class="bg-surface-container-low p-4 rounded-xl flex flex-col items-center justify-center text-center">
+<span class="text-[0.6875rem] font-bold uppercase tracking-widest text-on-secondary-container mb-1">GÜN DOĞUMU</span>
+<span class="text-sm font-medium text-on-surface">05:42</span>
+</div>
+<div class="bg-surface-container-low p-4 rounded-xl hidden md:flex flex-col items-center justify-center text-center">
+<span class="text-[0.6875rem] font-bold uppercase tracking-widest text-on-secondary-container mb-1">SICAKLIK</span>
+<span class="text-sm font-medium text-on-surface">24°C</span>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-[#0c1324] border-t border-white/5 py-8 flex flex-col items-center gap-4 w-full">
+<div class="flex gap-8">
+<a class="text-[0.6875rem] font-bold uppercase tracking-widest text-[#a7b6cc] hover:text-[#dce1fb] transition-opacity opacity-80 hover:opacity-100" href="#">HAKKINDA</a>
+<a class="text-[0.6875rem] font-bold uppercase tracking-widest text-[#a7b6cc] hover:text-[#dce1fb] transition-opacity opacity-80 hover:opacity-100" href="#">YARDIM</a>
+<a class="text-[0.6875rem] font-bold uppercase tracking-widest text-[#a7b6cc] hover:text-[#dce1fb] transition-opacity opacity-80 hover:opacity-100" href="#">GİZLİLİK</a>
+</div>
+<div class="text-[0.6875rem] font-bold uppercase tracking-widest text-[#a7b6cc]">
+            © 2024 The Chronos Editorial
+        </div>
+</footer>
+<!-- FAB Action (Contextual) -->
+<div class="fixed bottom-24 right-8 z-40">
+<button class="w-14 h-14 bg-tertiary text-on-tertiary rounded-full shadow-lg flex items-center justify-center hover:scale-110 active:scale-95 transition-all duration-300">
+<span class="material-symbols-outlined" data-icon="add_alarm">add_alarm</span>
+</button>
+</div>
+</body></html>

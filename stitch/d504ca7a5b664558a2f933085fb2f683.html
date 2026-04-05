@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#3cddc7",
+                    "surface-container-high": "#23293c",
+                    "on-surface-variant": "#c6c6cd",
+                    "on-tertiary-container": "#009182",
+                    "secondary-container": "#39485a",
+                    "on-error": "#690005",
+                    "surface-dim": "#0c1324",
+                    "secondary": "#b9c8de",
+                    "surface-container": "#191f31",
+                    "primary-fixed-dim": "#c6c6c7",
+                    "outline-variant": "#45464d",
+                    "on-tertiary-fixed": "#00201c",
+                    "on-secondary": "#233143",
+                    "error-container": "#93000a",
+                    "surface": "#0c1324",
+                    "surface-container-highest": "#2e3447",
+                    "secondary-fixed-dim": "#b9c8de",
+                    "tertiary-fixed": "#62fae3",
+                    "background": "#0c1324",
+                    "tertiary-fixed-dim": "#3cddc7",
+                    "on-primary-fixed-variant": "#454747",
+                    "on-primary-fixed": "#1a1c1c",
+                    "surface-container-lowest": "#070d1f",
+                    "on-tertiary": "#003731",
+                    "surface-variant": "#2e3447",
+                    "outline": "#909097",
+                    "tertiary-container": "#001c18",
+                    "on-secondary-container": "#a7b6cc",
+                    "primary-fixed": "#e2e2e2",
+                    "surface-bright": "#33394c",
+                    "on-tertiary-fixed-variant": "#005047",
+                    "on-primary-container": "#808181",
+                    "inverse-on-surface": "#2a3043",
+                    "on-error-container": "#ffdad6",
+                    "secondary-fixed": "#d4e4fa",
+                    "primary-container": "#161818",
+                    "on-secondary-fixed": "#0d1c2d",
+                    "primary": "#c6c6c7",
+                    "inverse-primary": "#5d5f5f",
+                    "on-primary": "#2f3131",
+                    "surface-tint": "#c6c6c7",
+                    "surface-container-low": "#151b2d",
+                    "on-surface": "#dce1fb",
+                    "error": "#ffb4ab",
+                    "on-secondary-fixed-variant": "#39485a",
+                    "inverse-surface": "#dce1fb",
+                    "on-background": "#dce1fb"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom Toggle Style */
+        .pill-toggle:checked + .toggle-bg {
+            background-color: #3cddc7;
+        }
+        .pill-toggle:checked + .toggle-bg .toggle-dot {
+            transform: translateX(1.5rem);
+            background-color: #003731;
+        }
+    </style>
+</head>
+<body class="bg-surface-dim text-on-surface min-h-screen flex flex-col selection:bg-tertiary selection:text-surface">
+<!-- TopAppBar -->
+<header class="bg-[#0c1324] flex justify-between items-center w-full px-6 py-4 max-w-full fixed top-0 z-50">
+<div class="text-xl font-bold tracking-[-0.02em] text-[#dce1fb] uppercase">CHRONOS</div>
+<nav class="hidden md:flex gap-8 items-center">
+<a class="font-['Inter'] font-medium tracking-tight text-[#a7b6cc] hover:text-[#dce1fb] transition-colors" href="#">DİJİTAL</a>
+<a class="font-['Inter'] font-medium tracking-tight text-[#a7b6cc] hover:text-[#dce1fb] transition-colors" href="#">ANALOG</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="text-[#3cddc7] transition-all duration-300 scale-95">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-32 pb-24 px-6 max-w-2xl mx-auto w-full">
+<!-- Editorial Header Section -->
+<section class="mb-16">
+<h1 class="text-[3.5rem] font-bold tracking-[-0.02em] text-on-surface leading-tight mb-2">Ayarlar</h1>
+<p class="text-on-secondary-container text-lg font-medium">Zamanı kontrol etme biçiminizi kişiselleştirin.</p>
+</section>
+<!-- Settings List (No-Line Architecture) -->
+<div class="space-y-12">
+<!-- Görünüm Seçimi Section -->
+<div class="group">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+<div>
+<h2 class="text-[1.75rem] font-medium text-on-surface leading-none mb-2">Görünüm Seçimi</h2>
+<p class="text-on-secondary-container text-sm">Arayüzün temel görsel dilini belirleyin.</p>
+</div>
+<div class="flex bg-surface-container-highest p-1 rounded-xl">
+<button class="px-6 py-2 rounded-lg bg-surface-container text-on-surface font-bold text-[0.6875rem] tracking-widest transition-all duration-300">
+                            DİJİTAL
+                        </button>
+<button class="px-6 py-2 rounded-lg text-on-secondary-container hover:text-on-surface font-bold text-[0.6875rem] tracking-widest transition-all duration-300">
+                            ANALOG
+                        </button>
+</div>
+</div>
+</div>
+<!-- Toggles Cluster -->
+<div class="space-y-8 p-8 bg-surface-container-low rounded-xl backdrop-blur-xl">
+<!-- Saniye Göster Switch -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" data-icon="timer">timer</span>
+</div>
+<div>
+<span class="block text-on-surface font-medium">Saniye Göster</span>
+<span class="text-[0.6875rem] font-bold text-on-secondary-container uppercase tracking-widest">Gerçek zamanlı akış</span>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only pill-toggle" type="checkbox"/>
+<div class="toggle-bg w-12 h-6 bg-surface-container-highest rounded-full transition-colors duration-300 flex items-center px-1">
+<div class="toggle-dot w-4 h-4 bg-on-secondary-container rounded-full transition-transform duration-300"></div>
+</div>
+</label>
+</div>
+<div class="h-px bg-on-surface/5"></div>
+<!-- 24 Saat Formatı Switch -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" data-icon="schedule">schedule</span>
+</div>
+<div>
+<span class="block text-on-surface font-medium">24 Saat Formatı</span>
+<span class="text-[0.6875rem] font-bold text-on-secondary-container uppercase tracking-widest">Askeri standart</span>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only pill-toggle" type="checkbox"/>
+<div class="toggle-bg w-12 h-6 bg-surface-container-highest rounded-full transition-colors duration-300 flex items-center px-1">
+<div class="toggle-dot w-4 h-4 bg-on-secondary-container rounded-full transition-transform duration-300"></div>
+</div>
+</label>
+</div>
+</div>
+<!-- Visual Info Card (Asymmetric) -->
+<div class="relative overflow-hidden rounded-xl aspect-[16/6] bg-surface-container-high group">
+<div class="absolute inset-0 bg-gradient-to-r from-surface-container-high to-transparent z-10"></div>
+<img alt="Clock mechanism" class="absolute inset-0 w-full h-full object-cover grayscale opacity-30 group-hover:scale-110 transition-transform duration-700" data-alt="abstract close-up of high-end mechanical watch gears with dramatic lighting and deep slate shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlE4HuQxtHOQAyFpZuPSvHfWKGdIWKXCkBFmEGjrk7_GdTIIjwYYMLCq0GkpY7FmJgtAUizhB7JnU8wLhe0hQX11aCS2vkRSvCkg6lpig1E9izO-vbopOAyndnHNA_8YBbSVPqozFdFtOpF_vNp72iE14sC5KxReml-72GrlAd6Vul2RpEY9oMXykGPkZNjlPBFCwixP8OLaf-sk2uXnKUQ0f71A6JXZwEXiuuKvTy-gzokFxPsetrTvmIae8XrHA_EIf5qMFYyT4"/>
+<div class="relative z-20 h-full flex flex-col justify-center px-8">
+<span class="text-[0.6875rem] font-bold text-tertiary uppercase tracking-[0.2em] mb-2">Otomatik Senkronizasyon</span>
+<p class="text-on-surface-variant max-w-xs text-sm">Tercihleriniz anında bulut hesabınızla eşleşir ve tüm cihazlarınızda güncellenir.</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-[#0c1324] border-t border-white/5 py-8 flex flex-col items-center gap-4 w-full">
+<div class="flex gap-8">
+<a class="text-[0.6875rem] font-bold uppercase tracking-widest text-[#a7b6cc] hover:text-[#dce1fb] transition-opacity opacity-80 hover:opacity-100" href="#">HAKKINDA</a>
+<a class="text-[0.6875rem] font-bold uppercase tracking-widest text-[#a7b6cc] hover:text-[#dce1fb] transition-opacity opacity-80 hover:opacity-100" href="#">YARDIM</a>
+<a class="text-[0.6875rem] font-bold uppercase tracking-widest text-[#a7b6cc] hover:text-[#dce1fb] transition-opacity opacity-80 hover:opacity-100" href="#">GİZLİLİK</a>
+</div>
+<div class="text-xs font-black text-[#a7b6cc] tracking-widest">© 2024 THE CHRONOS EDITORIAL</div>
+</footer>
+</body></html>

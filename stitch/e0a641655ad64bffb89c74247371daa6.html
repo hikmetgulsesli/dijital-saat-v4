@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#3cddc7",
+                    "surface-container-high": "#23293c",
+                    "on-surface-variant": "#c6c6cd",
+                    "on-tertiary-container": "#009182",
+                    "secondary-container": "#39485a",
+                    "on-error": "#690005",
+                    "surface-dim": "#0c1324",
+                    "secondary": "#b9c8de",
+                    "surface-container": "#191f31",
+                    "primary-fixed-dim": "#c6c6c7",
+                    "outline-variant": "#45464d",
+                    "on-tertiary-fixed": "#00201c",
+                    "on-secondary": "#233143",
+                    "error-container": "#93000a",
+                    "surface": "#0c1324",
+                    "surface-container-highest": "#2e3447",
+                    "secondary-fixed-dim": "#b9c8de",
+                    "tertiary-fixed": "#62fae3",
+                    "background": "#0c1324",
+                    "tertiary-fixed-dim": "#3cddc7",
+                    "on-primary-fixed-variant": "#454747",
+                    "on-primary-fixed": "#1a1c1c",
+                    "surface-container-lowest": "#070d1f",
+                    "on-tertiary": "#003731",
+                    "surface-variant": "#2e3447",
+                    "outline": "#909097",
+                    "tertiary-container": "#001c18",
+                    "on-secondary-container": "#a7b6cc",
+                    "primary-fixed": "#e2e2e2",
+                    "surface-bright": "#33394c",
+                    "on-tertiary-fixed-variant": "#005047",
+                    "on-primary-container": "#808181",
+                    "inverse-on-surface": "#2a3043",
+                    "on-error-container": "#ffdad6",
+                    "secondary-fixed": "#d4e4fa",
+                    "primary-container": "#161818",
+                    "on-secondary-fixed": "#0d1c2d",
+                    "primary": "#c6c6c7",
+                    "inverse-primary": "#5d5f5f",
+                    "on-primary": "#2f3131",
+                    "surface-tint": "#c6c6c7",
+                    "surface-container-low": "#151b2d",
+                    "on-surface": "#dce1fb",
+                    "error": "#ffb4ab",
+                    "on-secondary-fixed-variant": "#39485a",
+                    "inverse-surface": "#dce1fb",
+                    "on-background": "#dce1fb"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #0c1324;
+            color: #dce1fb;
+            font-family: 'Inter', sans-serif;
+        }
+        .temporal-glow {
+            text-shadow: 0 0 40px rgba(60, 221, 199, 0.08);
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+<!-- TopAppBar -->
+<nav class="flex justify-between items-center w-full px-6 py-4 max-w-full bg-[#0c1324] font-['Inter'] font-medium tracking-tight text-[#dce1fb]">
+<div class="text-xl font-bold tracking-[-0.02em] text-[#dce1fb] uppercase">
+            CHRONOS
+        </div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-[#3cddc7] font-bold border-b-2 border-[#3cddc7] pb-1 transition-all duration-300" href="#">DİJİTAL</a>
+<a class="text-[#a7b6cc] hover:text-[#dce1fb] transition-colors transition-all duration-300" href="#">ANALOG</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="hover:text-[#3cddc7] transition-all duration-300 active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+</div>
+</nav>
+<!-- Main Canvas -->
+<main class="flex-grow flex flex-col items-center justify-center relative overflow-hidden px-4">
+<!-- Background Decorative Element -->
+<div class="absolute inset-0 pointer-events-none flex items-center justify-center opacity-[0.03]">
+<div class="w-[800px] h-[800px] rounded-full border border-tertiary blur-3xl"></div>
+</div>
+<div class="relative z-10 flex flex-col items-center text-center">
+<!-- Digital Clock Display -->
+<div class="temporal-glow mb-2">
+<h1 class="text-[12vw] sm:text-[14vw] md:text-[10rem] lg:text-[12rem] font-bold tracking-[-0.04em] leading-none text-on-surface">
+                    12:45:30
+                </h1>
+</div>
+<!-- Date Display -->
+<div class="mt-4">
+<h2 class="text-xl md:text-3xl font-medium tracking-[0.2em] text-on-secondary-container uppercase">
+                    25 EKİM 2024 CUMA
+                </h2>
+</div>
+</div>
+<!-- Pulse Indicator Component -->
+<div class="absolute bottom-12 flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-tertiary animate-pulse shadow-[0_0_15px_rgba(60,221,199,0.5)]"></div>
+<span class="text-[0.6875rem] font-bold uppercase tracking-widest text-on-secondary-container">Canlı Senkronizasyon</span>
+</div>
+</main>
+<!-- Secondary Contextual Section: Time Zones -->
+<section class="w-full max-w-5xl mx-auto px-6 mb-20 grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="bg-surface-container p-8 rounded-xl border border-white/5 flex flex-col gap-2">
+<span class="text-[0.6875rem] font-bold uppercase tracking-widest text-on-secondary-container">Londra</span>
+<span class="text-3xl font-bold">09:45:30</span>
+<span class="text-[0.6875rem] text-tertiary">GMT +0</span>
+</div>
+<div class="bg-surface-container-high p-8 rounded-xl border border-white/5 flex flex-col gap-2 scale-105 shadow-xl">
+<span class="text-[0.6875rem] font-bold uppercase tracking-widest text-tertiary">İstanbul</span>
+<span class="text-3xl font-bold">12:45:30</span>
+<span class="text-[0.6875rem] text-tertiary">GMT +3</span>
+</div>
+<div class="bg-surface-container p-8 rounded-xl border border-white/5 flex flex-col gap-2">
+<span class="text-[0.6875rem] font-bold uppercase tracking-widest text-on-secondary-container">Tokyo</span>
+<span class="text-3xl font-bold">18:45:30</span>
+<span class="text-[0.6875rem] text-tertiary">GMT +9</span>
+</div>
+</section>
+<!-- Footer -->
+<footer class="flex flex-col items-center gap-4 w-full border-t border-white/5 py-8 bg-[#0c1324] text-[0.6875rem] font-bold uppercase tracking-widest text-[#a7b6cc]">
+<div class="flex gap-8 mb-2">
+<a class="hover:text-[#dce1fb] transition-opacity opacity-80 hover:opacity-100" href="#">HAKKINDA</a>
+<a class="hover:text-[#dce1fb] transition-opacity opacity-80 hover:opacity-100" href="#">YARDIM</a>
+<a class="hover:text-[#dce1fb] transition-opacity opacity-80 hover:opacity-100" href="#">GİZLİLİK</a>
+</div>
+<div class="text-xs font-black text-[#a7b6cc]">
+            © 2024 The Chronos Editorial
+        </div>
+</footer>
+<!-- FAB (Suppressed on details but active for Home/Clock screens) -->
+<div class="fixed bottom-8 right-8 z-50">
+<button class="w-14 h-14 bg-tertiary-fixed text-on-tertiary-fixed rounded-full flex items-center justify-center shadow-2xl hover:scale-105 active:scale-95 transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="add_alarm" style="font-variation-settings: 'FILL' 1;">add_alarm</span>
+</button>
+</div>
+</body></html>
