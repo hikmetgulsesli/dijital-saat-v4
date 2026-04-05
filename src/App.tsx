@@ -1,9 +1,54 @@
 import { useState, useEffect } from 'react'
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom'
+import { AnalogClock, DigitalClock, Settings, type ClockView } from './components'
 import './App.css'
 
-function App() {
+function Header({ currentView }: { currentView: ClockView }) {
+  const location = useLocation()
+  const isSettings = location.pathname === '/settings'
+  
+  return (
+    <header className="app-header">
+      <div className="logo">Chronos</div>
+      <nav className="desktop-nav">
+        <Link 
+          to="/" 
+          className={`nav-link ${currentView === 'digital' && !isSettings ? 'active' : ''}`}
+        >
+          Dijital
+        </Link>
+        <Link 
+          to="/analog" 
+          className={`nav-link ${currentView === 'analog' && !isSettings ? 'active' : ''}`}
+        >
+          Analog
+        </Link>
+      </nav>
+      <div className="header-actions">
+        <Link to="/settings" className={`settings-link ${isSettings ? 'active' : ''}`}>
+          <span className="material-symbols-outlined">settings</span>
+        </Link>
+      </div>
+    </header>
+  )
+}
+
+function Footer() {
+  return (
+    <footer className="app-footer">
+      <div className="footer-links">
+        <a href="#" className="footer-link">Hakkında</a>
+        <a href="#" className="footer-link">Yardım</a>
+        <a href="#" className="footer-link">Gizlilik</a>
+      </div>
+      <div className="footer-copy">© 2024 The Chronos Editorial</div>
+    </footer>
+  )
+}
+
+function AppContent() {
   const [time, setTime] = useState(new Date())
-  const [showSettings] = useState(false)
+  const [currentView, setCurrentView] = useState<ClockView>('digital')
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -12,48 +57,47 @@ function App() {
     return () => clearInterval(timer)
   }, [])
 
-  const formatTime = (date: Date) => {
-    return date.toLocaleTimeString('tr-TR', { hour12: false })
-  }
-
-  const formatDate = (date: Date) => {
-    return date.toLocaleDateString('tr-TR', {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    })
-  }
-
-  const hours = time.getHours()
-  const minutes = time.getMinutes()
-  const seconds = time.getSeconds()
-  const hourDeg = (hours % 12) * 30 + minutes * 0.5
-  const minuteDeg = minutes * 6
-  const secondDeg = seconds * 6
-
   return (
-    <div className="container">
-      <div className="clock-wrapper">
-        <div className="analog-clock">
-          <div className="hand hour-hand" style={{ transform: `rotate(${hourDeg}deg)` }} />
-          <div className="hand minute-hand" style={{ transform: `rotate(${minuteDeg}deg)` }} />
-          <div className="hand second-hand" style={{ transform: `rotate(${secondDeg}deg)` }} />
-          <div className="center-dot" />
-        </div>
-        <div className="digital-time">{formatTime(time)}</div>
-        <div className="date">{formatDate(time)}</div>
-      </div>
-      <button className="settings-btn">
-        ⚙️
+    <div className="app">
+      <Header currentView={currentView} />
+      
+      <main className="app-main">
+        <Routes>
+          <Route 
+            path="/" 
+            element={<DigitalClock time={time} />} 
+          />
+          <Route 
+            path="/analog" 
+            element={<AnalogClock time={time} />} 
+          />
+          <Route 
+            path="/settings" 
+            element={
+              <Settings 
+                currentView={currentView} 
+                onViewChange={setCurrentView} 
+              />
+            } 
+          />
+        </Routes>
+      </main>
+
+      <Footer />
+      
+      {/* FAB Action */}
+      <button className="fab-button" aria-label="Alarm ekle">
+        <span className="material-symbols-outlined">add_alarm</span>
       </button>
-      {showSettings && (
-        <div className="settings-panel">
-          <h3>Ayarlar</h3>
-          <p>24 saat formatı aktif</p>
-        </div>
-      )}
     </div>
+  )
+}
+
+function App() {
+  return (
+    <Router>
+      <AppContent />
+    </Router>
   )
 }
 

@@ -1,0 +1,91 @@
+.digital-clock {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  width: 100%;
+  padding: 2rem;
+}
+
+.digital-bg-glow {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0.03;
+}
+
+.digital-bg-glow::before {
+  content: '';
+  width: 800px;
+  height: 800px;
+  border-radius: 50%;
+  border: 1px solid var(--color-tertiary);
+  filter: blur(3px);
+}
+
+.digital-glow {
+  text-shadow: 0 0 40px rgba(60, 221, 199, 0.08);
+  margin-bottom: 0.5rem;
+}
+
+.time-display {
+  font-family: var(--font-headline), sans-serif;
+  font-size: clamp(3rem, 12vw, 10rem);
+  font-weight: 700;
+  color: var(--color-on-surface);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  user-select: none;
+}
+
+.date-display {
+  margin-top: 1rem;
+}
+
+.date-text {
+  font-family: var(--font-headline), sans-serif;
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  font-weight: 500;
+  color: var(--color-on-secondary-container);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.pulse-indicator {
+  position: absolute;
+  bottom: 3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-tertiary);
+  box-shadow: 0 0 15px rgba(60, 221, 199, 0.5);
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.pulse-text {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-on-secondary-container);
+}
