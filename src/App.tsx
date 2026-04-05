@@ -3,6 +3,7 @@ import './App.css'
 
 function App() {
   const [time, setTime] = useState(new Date())
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [showSettings] = useState(false)
 
   useEffect(() => {
@@ -44,7 +45,7 @@ function App() {
         <div className="digital-time">{formatTime(time)}</div>
         <div className="date">{formatDate(time)}</div>
       </div>
-      <button className="settings-btn" onClick={() => setShowSettings(!showSettings)}>
+      <button className="settings-btn">
         ⚙️
       </button>
       {showSettings && (
