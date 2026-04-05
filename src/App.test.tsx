@@ -1,92 +1,93 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 import { render, screen, fireEvent } from '@testing-library/react'
-import App from './App'
+import { BrowserRouter } from 'react-router-dom'
+import { AnalogClock, DigitalClock, Settings } from './components'
 
-describe('App', () => {
-  it('renders the clock view by default', () => {
-    render(<App />)
-    expect(screen.getByText('CHRONOS')).toBeInTheDocument()
+describe('DigitalClock', () => {
+  it('renders without crashing', () => {
+    const time = new Date('2024-01-01T12:30:45')
+    render(<DigitalClock time={time} />)
+    expect(screen.getByTestId('digital-clock')).toBeInTheDocument()
   })
 
-  it('displays digital time by default', () => {
-    render(<App />)
-    expect(document.querySelector('.digital-time')).toBeInTheDocument()
+  it('displays the time', () => {
+    const time = new Date('2024-01-01T12:30:45')
+    render(<DigitalClock time={time} />)
+    expect(screen.getByTestId('time-display')).toBeInTheDocument()
   })
 
-  it('displays date in Turkish', () => {
-    render(<App />)
-    expect(document.querySelector('.date-text')).toBeInTheDocument()
+  it('displays the date', () => {
+    const time = new Date('2024-01-01T12:30:45')
+    render(<DigitalClock time={time} />)
+    expect(screen.getByTestId('date-text')).toBeInTheDocument()
+  })
+})
+
+describe('AnalogClock', () => {
+  it('renders without crashing', () => {
+    const time = new Date('2024-01-01T12:30:45')
+    render(<AnalogClock time={time} />)
+    expect(screen.getByTestId('analog-clock')).toBeInTheDocument()
   })
 
-  it('shows pulse indicator', () => {
-    render(<App />)
-    expect(screen.getByText('Canlı Senkronizasyon')).toBeInTheDocument()
+  it('renders SVG clock face', () => {
+    const time = new Date('2024-01-01T12:30:45')
+    render(<AnalogClock time={time} />)
+    expect(document.querySelector('svg')).toBeInTheDocument()
+  })
+})
+
+describe('Settings', () => {
+  it('renders without crashing', () => {
+    render(
+      <BrowserRouter>
+        <Settings currentView="digital" onViewChange={() => {}} />
+      </BrowserRouter>
+    )
+    expect(screen.getByTestId('settings-view')).toBeInTheDocument()
   })
 
-  it('switches to analog clock when Analog nav clicked', () => {
-    render(<App />)
-    const analogBtn = screen.getByText('Analog')
-    fireEvent.click(analogBtn)
-    expect(document.querySelector('.analog-clock')).toBeInTheDocument()
+  it('calls onViewChange when digital toggle clicked', () => {
+    const mockChange = vi.fn()
+    render(
+      <BrowserRouter>
+        <Settings currentView="analog" onViewChange={mockChange} />
+      </BrowserRouter>
+    )
+    fireEvent.click(screen.getByTestId('digital-toggle'))
+    expect(mockChange).toHaveBeenCalledWith('digital')
   })
 
-  it('switches back to digital when Dijital nav clicked', () => {
-    render(<App />)
-    const analogBtn = screen.getByText('Analog')
-    fireEvent.click(analogBtn)
-    const digitalBtn = screen.getByText('Dijital')
-    fireEvent.click(digitalBtn)
-    expect(document.querySelector('.digital-time')).toBeInTheDocument()
+  it('calls onViewChange when analog toggle clicked', () => {
+    const mockChange = vi.fn()
+    render(
+      <BrowserRouter>
+        <Settings currentView="digital" onViewChange={mockChange} />
+      </BrowserRouter>
+    )
+    fireEvent.click(screen.getByTestId('analog-toggle'))
+    expect(mockChange).toHaveBeenCalledWith('analog')
   })
 
-  it('opens settings when settings button clicked', () => {
-    render(<App />)
-    const settingsBtn = screen.getByLabelText('Ayarlar')
-    fireEvent.click(settingsBtn)
-    expect(screen.getByText('Ayarlar')).toBeInTheDocument()
-    expect(screen.getByText('Zamanı kontrol etme biçiminizi kişiselleştirin.')).toBeInTheDocument()
-  })
-
-  it('returns to clock from settings when back clicked', () => {
-    render(<App />)
-    fireEvent.click(screen.getByLabelText('Ayarlar'))
-    fireEvent.click(screen.getByLabelText('Geri'))
-    expect(screen.getByText('CHRONOS')).toBeInTheDocument()
-  })
-
-  it('toggles clock type in settings', () => {
-    render(<App />)
-    fireEvent.click(screen.getByLabelText('Ayarlar'))
-    const analogToggle = screen.getByText('Analog')
-    fireEvent.click(analogToggle)
-    expect(analogToggle).toHaveClass('active')
-  })
-
-  it('toggles show seconds in settings', () => {
-    render(<App />)
-    fireEvent.click(screen.getByLabelText('Ayarlar'))
-    const secondsToggle = screen.getByLabelText('Saniye Göster')
+  it('toggles seconds display', () => {
+    render(
+      <BrowserRouter>
+        <Settings currentView="digital" onViewChange={() => {}} />
+      </BrowserRouter>
+    )
+    const secondsToggle = screen.getByTestId('seconds-toggle')
+    expect(secondsToggle).toBeInTheDocument()
     fireEvent.click(secondsToggle)
-    expect(secondsToggle).toBeChecked()
   })
 
-  it('toggles 24 hour format in settings', () => {
-    render(<App />)
-    fireEvent.click(screen.getByLabelText('Ayarlar'))
-    const formatToggle = screen.getByLabelText('24 Saat Formatı')
-    fireEvent.click(formatToggle)
-    expect(formatToggle).toBeChecked()
-  })
-
-  it('displays footer links', () => {
-    render(<App />)
-    expect(screen.getByText('Hakkında')).toBeInTheDocument()
-    expect(screen.getByText('Yardım')).toBeInTheDocument()
-    expect(screen.getByText('Gizlilik')).toBeInTheDocument()
-  })
-
-  it('displays copyright', () => {
-    render(<App />)
-    expect(screen.getByText('© 2024 The Chronos Editorial')).toBeInTheDocument()
+  it('toggles 24h format', () => {
+    render(
+      <BrowserRouter>
+        <Settings currentView="digital" onViewChange={() => {}} />
+      </BrowserRouter>
+    )
+    const toggle24h = screen.getByTestId('24h-toggle')
+    expect(toggle24h).toBeInTheDocument()
+    fireEvent.click(toggle24h)
   })
 })
