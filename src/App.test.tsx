@@ -1,93 +1,42 @@
-import { describe, it, expect, vi } from 'vitest'
-import { render, screen, fireEvent } from '@testing-library/react'
-import { BrowserRouter } from 'react-router-dom'
-import { AnalogClock, DigitalClock, Settings } from './components'
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
+import { render, screen, act } from '@testing-library/react'
+import App from './App'
 
-describe('DigitalClock', () => {
-  it('renders without crashing', () => {
-    const time = new Date('2024-01-01T12:30:45')
-    render(<DigitalClock time={time} />)
-    expect(screen.getByTestId('digital-clock')).toBeInTheDocument()
+describe('App', () => {
+  beforeEach(() => {
+    vi.useFakeTimers()
   })
 
-  it('displays the time', () => {
-    const time = new Date('2024-01-01T12:30:45')
-    render(<DigitalClock time={time} />)
-    expect(screen.getByTestId('time-display')).toBeInTheDocument()
+  afterEach(() => {
+    vi.useRealTimers()
   })
 
-  it('displays the date', () => {
-    const time = new Date('2024-01-01T12:30:45')
-    render(<DigitalClock time={time} />)
-    expect(screen.getByTestId('date-text')).toBeInTheDocument()
-  })
-})
-
-describe('AnalogClock', () => {
-  it('renders without crashing', () => {
-    const time = new Date('2024-01-01T12:30:45')
-    render(<AnalogClock time={time} />)
-    expect(screen.getByTestId('analog-clock')).toBeInTheDocument()
+  it('renders digital time', () => {
+    const fixedDate = new Date('2026-04-06T12:30:45')
+    vi.setSystemTime(fixedDate)
+    render(<App />)
+    expect(screen.getByText(/12:30:45/)).toBeTruthy()
   })
 
-  it('renders SVG clock face', () => {
-    const time = new Date('2024-01-01T12:30:45')
-    render(<AnalogClock time={time} />)
-    expect(document.querySelector('svg')).toBeInTheDocument()
-  })
-})
-
-describe('Settings', () => {
-  it('renders without crashing', () => {
-    render(
-      <BrowserRouter>
-        <Settings currentView="digital" onViewChange={() => {}} />
-      </BrowserRouter>
-    )
-    expect(screen.getByTestId('settings-view')).toBeInTheDocument()
+  it('renders date in Turkish', () => {
+    const fixedDate = new Date('2026-04-06T12:30:45')
+    vi.setSystemTime(fixedDate)
+    render(<App />)
+    expect(screen.getByText(/ Pazartesi/)).toBeTruthy()
   })
 
-  it('calls onViewChange when digital toggle clicked', () => {
-    const mockChange = vi.fn()
-    render(
-      <BrowserRouter>
-        <Settings currentView="analog" onViewChange={mockChange} />
-      </BrowserRouter>
-    )
-    fireEvent.click(screen.getByTestId('digital-toggle'))
-    expect(mockChange).toHaveBeenCalledWith('digital')
+  it('renders settings button', () => {
+    render(<App />)
+    const settingsBtn = screen.getByRole('button', { name: 'Ayarlar' })
+    expect(settingsBtn).toBeTruthy()
   })
 
-  it('calls onViewChange when analog toggle clicked', () => {
-    const mockChange = vi.fn()
-    render(
-      <BrowserRouter>
-        <Settings currentView="digital" onViewChange={mockChange} />
-      </BrowserRouter>
-    )
-    fireEvent.click(screen.getByTestId('analog-toggle'))
-    expect(mockChange).toHaveBeenCalledWith('analog')
-  })
-
-  it('toggles seconds display', () => {
-    render(
-      <BrowserRouter>
-        <Settings currentView="digital" onViewChange={() => {}} />
-      </BrowserRouter>
-    )
-    const secondsToggle = screen.getByTestId('seconds-toggle')
-    expect(secondsToggle).toBeInTheDocument()
-    fireEvent.click(secondsToggle)
-  })
-
-  it('toggles 24h format', () => {
-    render(
-      <BrowserRouter>
-        <Settings currentView="digital" onViewChange={() => {}} />
-      </BrowserRouter>
-    )
-    const toggle24h = screen.getByTestId('24h-toggle')
-    expect(toggle24h).toBeInTheDocument()
-    fireEvent.click(toggle24h)
+  it('toggles settings panel', () => {
+    render(<App />)
+    const settingsBtn = screen.getByRole('button', { name: 'Ayarlar' })
+    act(() => {
+      settingsBtn.click()
+    })
+    expect(screen.getByRole('heading', { name: 'Ayarlar' })).toBeTruthy()
   })
 })
