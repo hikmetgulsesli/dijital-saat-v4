@@ -3,7 +3,6 @@ import './App.css'
 
 function App() {
   const [time, setTime] = useState(new Date())
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [showSettings] = useState(false)
 
   useEffect(() => {
